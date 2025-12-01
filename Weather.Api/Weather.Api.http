@@ -1,0 +1,71 @@
+@Weather.Api_HostAddress = https://localhost:5001
+@cityId = your-city-id-here
+
+### Получить список всех городов
+GET {{Weather.Api_HostAddress}}/api/cities
+Accept: application/json
+
+### Создать новый город - Moscow
+POST {{Weather.Api_HostAddress}}/api/cities
+Content-Type: application/json
+
+{
+  "cityName": "Moscow",
+  "pollingIntervalMinutes": 30
+}
+
+### Создать новый город - London
+POST {{Weather.Api_HostAddress}}/api/cities
+Content-Type: application/json
+
+{
+  "cityName": "London",
+  "pollingIntervalMinutes": 15
+}
+
+### Создать новый город - Tokyo
+POST {{Weather.Api_HostAddress}}/api/cities
+Content-Type: application/json
+
+{
+  "cityName": "Tokyo",
+  "pollingIntervalMinutes": 60
+}
+
+### Обновить настройки города (изменить интервал)
+PUT {{Weather.Api_HostAddress}}/api/cities/{{cityId}}
+Content-Type: application/json
+
+{
+  "pollingIntervalMinutes": 45,
+  "isActive": true
+}
+
+### Деактивировать город
+PUT {{Weather.Api_HostAddress}}/api/cities/{{cityId}}
+Content-Type: application/json
+
+{
+  "isActive": false
+}
+
+### Активировать город
+PUT {{Weather.Api_HostAddress}}/api/cities/{{cityId}}
+Content-Type: application/json
+
+{
+  "isActive": true
+}
+
+### Удалить город
+DELETE {{Weather.Api_HostAddress}}/api/cities/{{cityId}}
+
+### Получить историю погоды за последние 7 дней
+GET {{Weather.Api_HostAddress}}/api/weather/{{cityId}}/history?from=2024-11-25T00:00:00Z&to=2024-12-01T23:59:59Z&page=1&pageSize=50
+Accept: application/json
+
+### Получить историю погоды за последний день
+GET {{Weather.Api_HostAddress}}/api/weather/{{cityId}}/history?from=2024-11-30T00:00:00Z&to=2024-12-01T23:59:59Z&page=1&pageSize=100
+Accept: application/json
+
+###
